@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import * as authCtrl from '../controllers/auth.controller'
+import * as authCtrl from '../auth/auth.controller'
 const router = Router()
 
 router.post('/signin', authCtrl.sign_in)

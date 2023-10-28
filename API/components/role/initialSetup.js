@@ -1,4 +1,4 @@
-import Role from '../models/role'
+import Role from '../role/role'
 
 export const create_roles = async () => {
     try {

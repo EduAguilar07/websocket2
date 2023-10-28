@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
-import User from '../models/user'
-import Role from '../models/role'
+import User from '../user/user'
+import Role from '../role/role'
 import config from '../config'
 
 export const sign_up = async (req, res) => {
