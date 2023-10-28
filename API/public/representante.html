@@ -52,6 +52,10 @@
         <div class="login-main-text">
             <img src="imagenes/upslogo.png" />
             <h2>Crear<br> Representante</h2>
+            <div>
+                <h4>Usuario</h4>
+            </div>
+            <button onclick="cerrarSession()" class="btn btn-secondary col-4">Cerrar Sesión</button>
         </div>
     </div>
     <div id="divRepresentante" class="main">
@@ -66,60 +70,59 @@
                 </div>
             </div>
             <div class="row">
-            <div class="form-group col-6">
-                <label for="cedula" class="form-label">Cédula</label>
-                <input type="text" id="cedula" class="form-control" placeholder="Cédula" />
-            </div>
-            <div class="form-group col-6">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Nombre" />
-            </div>
+                <div class="form-group col-6">
+                    <label for="cedula" class="form-label">Cédula</label>
+                    <input type="text" id="cedula" class="form-control" placeholder="Cédula" />
+                </div>
+                <div class="form-group col-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre" />
+                </div>
             </div>
             <div class="row">
-            <div class="form-group col-6">
-                <label for="apellido" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido" placeholder="Apellido" />
+                <div class="form-group col-6">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" placeholder="Apellido" />
+                </div>
+                <div class="form-group col-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email" />
+                </div>
             </div>
-            <div class="form-group col-6">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Email" />
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="domicilio" class="form-label">Domicilio</label>
+                    <input type="text" class="form-control" id="domicilio" placeholder="Domicilio" />
+                </div>
+                <div class="form-group col-6">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" placeholder="Teléfono" />
+                </div>
             </div>
-        </div>
-        <div class="row">
-        <div class="form-group col-6">
-                <label for="domicilio" class="form-label">Domicilio</label>
-                <input type="text" class="form-control" id="domicilio" placeholder="Domicilio" />
-            </div>
-            <div class="form-group col-6">
-                <label for="telefono" class="form-label">Teléfono</label>
-                <input type="text" class="form-control" id="telefono" placeholder="Teléfono" />
-            </div>
-        </div>
-        <div class="row">
-        <div class="form-group col-6">
-                <label for="empresas" class="form-label">Empresas</label>
-                <select id="empresas" class="form-select"></select>
-        </div>        
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="empresas" class="form-label">Empresas</label>
+                    <select id="empresas" class="form-select"></select>
+                </div>
                 <div class="col-6">
                     <button onclick="agregarEmpresa()" class="btn btn-black">Agregar</button>
                 </div>
             </div>
         </div>
-            <div class="row g-3 align-items-center">
-                <div class="col-4">
-                    <label class="form-label">Lista de Empresas</label>
-                </div>
-                <div class="col-4 ">
-                    <div id="dvEmpresasSeleccionadas" class="form-control">
-                        <input type="hidden" id="hdnEmpresas" />
-                    </div>
-                </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-4">
+                <label class="form-label">Lista de Empresas</label>
             </div>
-            <div class="col-6 mx-auto">
-                <button id="btnGuardar" onclick="guardarRepresentante()" class="btn btn-black col-4">Guardar</button>
-                <button onclick="cerrarSession()" class="btn btn-secondary col-4">Cerrar Sesión</button>
+            <div class="col-4 ">
+                <div id="dvEmpresasSeleccionadas" class="form-control">
+                    <input type="hidden" id="hdnEmpresas" />
+                </div>
             </div>
         </div>
+        <div class="col-6 mx-auto">
+            <button id="btnGuardar" onclick="guardarRepresentante()" class="btn btn-black col-4">Guardar</button>
+        </div>
+    </div>
     </div>
 </body>
 
