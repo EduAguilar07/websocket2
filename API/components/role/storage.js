@@ -1,5 +1,4 @@
 const Model = require('./model')
-const ModelRol = require('../role/model')
 
 async function agregarRol( dato ) {
     const resultado = await new Model( dato )
