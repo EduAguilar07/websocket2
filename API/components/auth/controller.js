@@ -1,7 +1,7 @@
-import jwt from 'jsonwebtoken'
-import User from '../user/user'
-import Role from '../role/role'
-import config from '../config'
+const jwt = require('jsonwebtoken')
+const User = require('../user/model')
+const Role = require('../role/model')
+const config = require ('../../config')
 
 export const sign_up = async (req, res) => {
     try {
