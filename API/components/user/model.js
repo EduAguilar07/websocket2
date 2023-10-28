@@ -31,4 +31,5 @@ userSchema.statics.compare_password = (password, received_password) => {
     return bcryptjs.compareSync(password, received_password)
 }
 
-export default mongoose.model('user', userSchema)
+const model = mongoose.model('user', userSchema)
+module.exports = model
