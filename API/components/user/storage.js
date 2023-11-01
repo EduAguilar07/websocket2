@@ -3,7 +3,7 @@ const ModelRol = require('../role/model')
 
 async function agregarUser( dato ) {
     const user = await new Model( dato )
-    user.password = await User.encrypted_password(user.password)
+    user.password = await Model.encrypted_password(user.password)
     return user.save()
 
 }

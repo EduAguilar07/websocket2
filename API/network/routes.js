@@ -2,7 +2,7 @@ const representante = require('../components/representantelegal/interface')
 const empresa = require('../components/empresa/interface')
 const user = require('../components/user/interface')
 const auth = require('../components/auth/interface')
-const rol = require('../components/rol/interface')
+const rol = require('../components/role/interface')
 
 const routes = function( server ) {
     server.use('/representantelegal', representante)
