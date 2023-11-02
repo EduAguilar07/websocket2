@@ -60,7 +60,7 @@ function agregarEmpresa() {
     var opcionSeleccionada = elementoSelect.options[elementoSelect.selectedIndex];
     var valorSeleccionado = opcionSeleccionada.value;
     var textoSeleccionado = opcionSeleccionada.text;
-    if(valorSeleccionado == '') {return;}
+    if (valorSeleccionado == '') { return; }
     var divEmpresas = document.getElementById("dvEmpresasSeleccionadas");
     var divEmpresa = document.createElement('div');
     divEmpresa.textContent = textoSeleccionado;
@@ -106,6 +106,19 @@ function llenarSelectEmpresa(data) {
 }
 
 window.addEventListener('load', function () {
-    obtenerEmpresas();
+    if (document.cookie.indexOf('token=') == 0) {
+        obtenerEmpresas();
+    }
+    else {
+        this.alert(document.cookie.indexOf('token='));
+        window.location.href = "/index.html";
+    }
 })
 
+
+
+function cerrarSession() {
+
+    document.cookie = "token=; max-age=0";
+    window.location.href = "/index.html";
+}
