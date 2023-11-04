@@ -12,14 +12,19 @@ function guardar() {
         const request_options = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json' // Indicar que se envían datos JSON
+                'Content-Type': 'application/json',
+                'x-access-email':`${document.getElementById('email').value}`
             },
             body: JSON.stringify(data) // Convertir los datos a JSON
         };
-
-        fetch('/auth/signin', request_options)
+       
+        fetch('/auth',request_options)
             .then((data) => resolve(data.json()))
-            .catch((error) => reject(`[error]: ${error}`));
+            .catch((error) => {
+                console.log(error)
+                reject(`[error]: ${error}`)
+            
+            });
     })
 }
 
@@ -31,6 +36,7 @@ function iniciarSesion() {
             const expirationDate = new Date();
             expirationDate.setDate(expirationDate.getDate() + 7);
             document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}; path=/representante.html`;            
+            document.cookie = `emailUser=${document.getElementById('email').value}; expires=${expirationDate.toUTCString()}; path=/representante.html`;            
             window.location.href = "/representante.html";
         })
         .catch((error) => {

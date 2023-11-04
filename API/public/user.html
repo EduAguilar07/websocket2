@@ -21,26 +21,26 @@
     </div>
     <div id="divUser" class="main">
         <div class="col-md-10">
-            <div class="register-form">
+            <div class="register-formneeds-validation" novalidate>
                 <div class="d-grid gap-2 col-3 mx-auto">
                     <h2>Usuario</h2>
                 </div>
                 <div class="form-group">
                     <label>Usuario</label>
-                    <input type="text" class="form-control" placeholder="Usuario">
+                    <input id="user" type="text" class="form-control" placeholder="Usuario">
                 </div>
                 <div class="form-group">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email" />
+                    <input type="email" class="form-control" id="email" placeholder="Email" aria-describedby="inputGroupPrepend" required/>
                 </div>
                 <div class="row">
                     <div class="form-group col-6">
                         <label>Contraseña</label>
-                        <input type="password" class="form-control" placeholder="Contraseña">
+                        <input id="password" type="password" class="form-control" placeholder="Contraseña" required>
                     </div>
                     <div class="form-group col-6">
                         <label>Confirmar Contraseña</label>
-                        <input type="password" class="form-control" placeholder="Confirmar Contraseña">
+                        <input id="confirm_password" type="password" class="form-control" placeholder="Confirmar Contraseña" required>
                     </div>
                 </div>
 

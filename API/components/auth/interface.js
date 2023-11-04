@@ -5,7 +5,7 @@ const auth_jwt = require('../middlewares/auth.jwt')
 
 const routes = express.Router()
 
-routes.post('/signin', auth_jwt.is_admin, function(req, res){
+routes.post('/', auth_jwt.is_admin,function(req, res){
     controller.sign_in( req )
     .then( (data) => {
         console.log(data)

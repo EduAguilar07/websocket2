@@ -23,10 +23,14 @@ function guardar() {
         empresas: empresasJson_
     }
     return new Promise((resolve, reject) => {
+        var email_ = getCookie("emailUser");
+        var token_ = getCookie("token");
         const request_options = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json' // Indicar que se envían datos JSON
+                'Content-Type': 'application/json',
+                'x-access-token':`${token_}`,
+                'x-access-email':`${email_}`
             },
             body: JSON.stringify(data) // Convertir los datos a JSON
         };
@@ -72,7 +76,18 @@ function agregarEmpresa() {
 
 
 async function obtenerEmpresas() {
-    fetch('/empresa')
+    var email_ = getCookie("emailUser");
+    var token_ = getCookie("token");
+    const request_options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json', // Indicar que se envían datos JSON
+            'x-access-token':`${token_}`,
+            'x-access-email':`${email_}`
+        }        
+    };
+
+    fetch('/empresa', request_options)
         .then(response => {
             if (!response.ok) {
                 throw new Error('la solicitud no se pudo completar');
@@ -106,13 +121,13 @@ function llenarSelectEmpresa(data) {
 }
 
 window.addEventListener('load', function () {
-    if (document.cookie.indexOf('token=') == 0) {
+   // if (document.cookie.indexOf('token=') == 0) {
         obtenerEmpresas();
-    }
-    else {
+   // }
+   /* else {
         this.alert(document.cookie.indexOf('token='));
         window.location.href = "/index.html";
-    }
+    }*/
 })
 
 
@@ -122,3 +137,19 @@ function cerrarSession() {
     document.cookie = "token=; max-age=0";
     window.location.href = "/index.html";
 }
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  
