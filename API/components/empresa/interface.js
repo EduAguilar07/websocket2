@@ -1,11 +1,11 @@
 const express = require('express')
 const controller = require('./controller')
 const response = require('../../network/response')
-
+const auth_jwt = require('../middlewares/auth.jwt')
 const routes = express.Router()
 
 
-routes.post('/', function(req, res){
+routes.post('/', [auth_jwt.verify_token, auth_jwt.is_admin], function(req, res){
     controller.agregarEmpresa( req.body )
         .then((data) => {
             // Emitir notificacion cuando se agrega una empresa.
@@ -20,20 +20,20 @@ routes.post('/', function(req, res){
         .catch((error) => response.error(req, res, error, 400));
 });
 
-routes.get('/', function(req, res){
+routes.get('/',[auth_jwt.verify_token, auth_jwt.is_admin], function(req, res){
     const filtro = req.body || null
     controller.obtenerEmpresa( filtro )
         .then( (data) => response.success(req, res, data, 200) )
         .catch( (error) => response.error(req, res, error, 400) )
 })
 
-routes.put('/', function(req, res){
+routes.put('/', [auth_jwt.verify_token, auth_jwt.is_admin], function(req, res){
     controller.actualizarEmpresa( req.body )
         .then( (data) => response.success(req, res, data, 201) )
         .catch( (error) => response.error(req, res, error, 400) )
 })
 
-routes.delete('/', function(req, res){
+routes.delete('/', [auth_jwt.verify_token, auth_jwt.is_admin], function(req, res){
     controller.eliminarEmpresa( req.body )
         .then( (data) => response.success(req, res, data, 201) )
         .catch( (error) => response.error(req, res, error, 400) )

@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken')
+const config = require('../../config')
+const User = require('../user/model')
+const Role = require('../role/model')
 
-import config from '../config'
-import User from '../models/user'
-import Role from '../models/role'
-
-export const verify_token = async (req, res, next) => {
+async function verify_token (req, res, next) 
+{
     try {
         const token = req.headers['x-access-token']
         if (!token) {
@@ -24,8 +24,9 @@ export const verify_token = async (req, res, next) => {
     }
 }
 
-export const is_admin = async (req, res, next) => {
-    const user = await User.findById(req.user_id)
+async function is_admin(req, res, next) {
+    const emailUser = req.headers['x-access-email']
+    const user = await User.find({email:emailUser })
     const roles = await Role.find({_id: {$in: user.roles}})
 
     for (let i=0; i<roles.length; i++) {
@@ -37,15 +38,7 @@ export const is_admin = async (req, res, next) => {
     return res.status(403).json({message: 'Requer admin role.'})    
 }
 
-export const is_moderator = async (req, res, next) => {
-    const user = await User.findById(req.user_id)
-    const roles = await Role.find({_id: {$in: user.roles}})
-
-    for (let i=0; i<roles.length; i++) {
-        if (roles[i].name == 'moderator') {
-            next()
-            return 
-        }
-    }
-    return res.status(403).json({message: 'Requer moderator role.'})    
+module.exports = {
+    verify_token,    
+    is_admin
 }

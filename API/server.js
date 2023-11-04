@@ -8,13 +8,13 @@ const io = require('socket.io')(server)
 const config = require('./config')
 const routes = require('./network/routes')
 const db = require('./db')
+const middlewares = require('./components/middlewares')
 
 db( config.DB_URL )
 
 app.use( body_parser.json() )
 app.use( body_parser.urlencoded({extended: false}) )
 app.use('/', express.static('public'))
-
 app.use((req, res, next) => {
     req.io = io;
     next();
