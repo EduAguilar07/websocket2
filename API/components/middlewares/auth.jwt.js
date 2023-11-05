@@ -35,7 +35,7 @@ async function is_admin(req, res, next) {
             }
         }
     }
-    return res.status(403).json({ message: 'Requer admin role.' })
+    return res.status(403).json({ message: 'Debe ser un usuario admin para continuar.' })
 }
 
 module.exports = {

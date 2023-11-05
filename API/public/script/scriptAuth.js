@@ -22,8 +22,7 @@ function guardar() {
             .then((data) => resolve(data.json()))
             .catch((error) => {
                 console.log(error)
-                reject(`[error]: ${error}`)
-            
+          
             });
     })
 }
@@ -32,18 +31,28 @@ function iniciarSesion() {
     var mensaje = "";
     guardar()
         .then((response) => {
-            const token = response.body.token
-            const expirationDate = new Date();
-            expirationDate.setDate(expirationDate.getDate() + 7);
-            document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}; path=/representante.html`;            
-            document.cookie = `emailUser=${document.getElementById('email').value}; expires=${expirationDate.toUTCString()}; path=/representante.html`;            
-            window.location.href = "/representante.html";
-        })
-        .catch((error) => {
-            alert('Email o Password no existe');
-        })
+            if(response.body != undefined)
+            {
+                if(response.body = ''){
+                    alert('Usuario y/o password incorrectos')
+                }
+                else{
+                    const token = response.body.token
+                    const expirationDate = new Date();
+                    expirationDate.setDate(expirationDate.getDate() + 1
+                    );
+                    document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}; path=/representante.html`;            
+                    document.cookie = `emailUser=${document.getElementById('email').value}; expires=${expirationDate.toUTCString()}; path=/representante.html`;            
+                    window.location.href = "/representante.html";
+                }
+            }
+            else if (response.message != undefined)
+            {
+                alert(response.message)
+            }
+            else{
+                alert("Usuario o Password no Encontrado")
+            }
+        })      
 
 }
-
-
-
